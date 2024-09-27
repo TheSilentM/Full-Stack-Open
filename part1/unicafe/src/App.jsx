@@ -1,5 +1,4 @@
-//thre buttons (good, neutral, bad)
-//useState for tracking feedback of every person for every button
+import { StrictMode } from 'react'
 import { useState } from 'react'
 
 const StatisticLine = (props) => {
