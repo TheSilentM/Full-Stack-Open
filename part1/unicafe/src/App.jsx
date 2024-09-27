@@ -2,19 +2,37 @@
 //useState for tracking feedback of every person for every button
 import { useState } from 'react'
 
-const Statistics = (props) => {
+const StatisticLine = (props) => {
+
+  const text = String(props.text);
+  const feedback = String(props.feedback);
+
+
+  if (props.feedback === 0 || isNaN(props.feedback)) {
+    return (
+      <h4>No Feedback given</h4>
+    )
+  } else {
+    return (
+      <>
+      <table>
+        <tbody>
+          <tr>
+            <th><h4>{text}</h4></th>
+            <td><h4>{feedback}</h4></td>
+          </tr>
+        </tbody>
+      </table>
+      </>
+    )
+  }
+}
+
+const Button = (props) => {
   return (
-    <>
-    <h1>{props.title}</h1>
-    <br />
-      <h4>Good: {props.good}</h4>
-      <h4>Neutral: {props.neutral}</h4>
-      <h4>Bad: {props.bad}</h4>
-      <h4>All: {props.total}</h4>
-      <br />
-      <h4>Average: {props.average}</h4>
-      <h4>Positive percentage: {props.percentage}</h4>
-    </>
+    <button onClick={props.click}>
+      {props.name}
+    </button>
   )
 }
 
@@ -38,17 +56,23 @@ const App = () => {
 
   const total = good + neutral + bad;
   const average = (good * 1) + (neutral * 0) + (bad * -1) / total;
-  const percentage = (((good * 1)) / total) * 100 + " %";
+  const percentage = (((good * 1)) / total) * 100;
  
   return (
     <>
       <h1>Give Feedback</h1>
       <br />
-      <button onClick={goodFeedback}>Good</button>
-      <button onClick={neutralFeedback}>Neutral</button>
-      <button onClick={badFeedback}>Bad</button>
+      <Button click={goodFeedback} name="Good" />
+      <Button click={neutralFeedback} name="Neutral" />
+      <Button click={badFeedback} name="Bad" />
       <br />
-      <Statistics title="Statistics" good={good} neutral={neutral} bad={bad} average={average} percentage={percentage} total={total}/>
+      <h1>Statistics</h1>
+      <StatisticLine text="Good: " feedback={good}/>
+      <StatisticLine text="Neutral: " feedback={neutral}/>
+      <StatisticLine text="Bad: " feedback={bad}/>
+      <StatisticLine text="All: " feedback={total}/>
+      <StatisticLine text="Average: " feedback={average}/>
+      <StatisticLine text="Positive Percentage (%):" feedback={percentage}/>
     </>
   )
 }
