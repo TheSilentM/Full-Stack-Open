@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { useState } from 'react'
 
 const StatisticLine = (props) => {
