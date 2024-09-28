@@ -25,7 +25,20 @@ function App() {
     const saveVote = [...vote];
     saveVote[selected] += 1;
     setVote(saveVote);
-    console.log(saveVote[selected])
+  }
+
+
+  const AnectodeWithMaxValue = () => {
+    const maxValue = Math.max(...vote);
+    const maxIndex = vote.indexOf(maxValue);
+
+    return (
+      <>
+        <p>{anectodes[maxIndex]}</p>
+        <p>Has {maxValue} votes</p>
+      </>
+    );
+    
   }
 
   return (
@@ -34,6 +47,8 @@ function App() {
       <h4>Has {vote[selected]} votes</h4>
       <button onClick={generateRandom}>generate</button>
       <button onClick={voteAnectode}>vote</button>
+      <h4>Anectode with largest number of vote</h4>
+      <AnectodeWithMaxValue />
     </>
   )
 }
