@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PeopleList from "../components/PeopleList";
 import PersonForm from "../components/PersonForm";
 import SearchNumbers from '../components/SearchNumbers';
+
+import axios from "axios";
 
 const App = () => {
   const [people, setPeople] = useState([
@@ -15,6 +17,17 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
 
+  //promise asynchronous function
+  const hook = () => {
+    console.log("promise");
+    axios.get("http://localhost:3001/persons").then(response => {
+      console.log("promise fulfilled");
+      setPeople(response.data);
+    });
+    console.log("promise out");
+  }
+
+  useEffect(hook, []);
 
   const addPerson = (e) => {
     e.preventDefault();
