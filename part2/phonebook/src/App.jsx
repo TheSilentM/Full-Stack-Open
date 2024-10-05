@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PeopleList from "../components/PeopleList";
 import PersonForm from "../components/PersonForm";
 import SearchNumbers from '../components/SearchNumbers';
-
+import services from "../src/services/numbers";
 import axios from "axios";
 
 const App = () => {
@@ -19,12 +19,9 @@ const App = () => {
 
   //promise asynchronous function
   const hook = () => {
-    console.log("promise");
-    axios.get("http://localhost:3001/persons").then(response => {
-      console.log("promise fulfilled");
+    services.getAll().then(response => {
       setPeople(response.data);
     });
-    console.log("promise out");
   }
 
   useEffect(hook, []);
@@ -32,15 +29,17 @@ const App = () => {
   const addPerson = (e) => {
     e.preventDefault();
     const nameObject = {
-      name: newName, number: newNumber, id: people.length + 1
+      name: newName, number: newNumber
     };
 
     if (people.some(person => person.name === newName && person.number === newNumber)) {
       alert(`${newName} is already added to phonebook`);
     } else {
-      setPeople(people.concat(nameObject));
-      setNewName("");
-      setNewNumber("");
+      services.save(nameObject).then(response => {
+        setPeople(people.concat(response.data));
+        setNewName("");
+        setNewNumber("");
+      })
     }
   }
 
@@ -56,7 +55,8 @@ const App = () => {
     setSearchFilter(e.target.value);
   }
 
-  const filter = people.filter( person => person.name.toLowerCase().includes(searchFilter.toLowerCase()));
+  const filter = people.filter(person => person.name.toLowerCase().includes(searchFilter.toLowerCase()));
+  
 
   return (
     <div>
