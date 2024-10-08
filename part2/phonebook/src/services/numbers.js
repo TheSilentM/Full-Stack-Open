@@ -10,4 +10,14 @@ const save = (nameObject) => {
     return axios.post(url, nameObject);
 }
 
-export default {getAll, save};
+const deleteItem = (id) => {
+    const newUrl = `http://localhost:3001/persons/${id}`;
+    return axios.delete(newUrl, id);
+}
+
+const putNewNumbers = (id, newObject) => {
+    const newUrl = `http://localhost:3001/persons/${id}`;
+    return axios.put(newUrl, newObject);
+}
+
+export default {getAll, save, deleteItem, putNewNumbers};
