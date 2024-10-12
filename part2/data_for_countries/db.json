@@ -1,0 +1,81 @@
+{
+    "countries": [
+      {
+        "id": 0,
+        "name": "Italy",
+        "capital": "Rome",
+        "area": "301340",
+        "languages": "Italian"
+      },
+      {
+        "id": 1,
+        "name": "France",
+        "capital": "Paris",
+        "area": "551695",
+        "languages": "French"
+      },
+      {
+        "id": 2,
+        "name": "Spain",
+        "capital": "Madrid",
+        "area": "505992",
+        "languages": "Spanish"
+      },
+      {
+        "id": 3,
+        "name": "Eswatini (Swaziland)",
+        "capital": "Mbabane",
+        "area": "17364",
+        "languages": "Swati, English"
+      },
+      {
+        "id": 4,
+        "name": "United States",
+        "capital": "Washington DC",
+        "area": "9833517",
+        "languages": "English"
+      },
+      {
+        "id": 5,
+        "name": "San Marino",
+        "capital": "San Marino",
+        "area": "61",
+        "languages": "Italian"
+      },
+      {
+        "id": 6,
+        "name": "Samoa",
+        "capital": "Apia",
+        "area": "2831",
+        "languages": "Samoan, English"
+      },
+      {
+        "id": 7,
+        "name": "Saint Lucia",
+        "capital": "Castries",
+        "area": "617",
+        "languages": "English"
+      },
+      {
+        "id": 8,
+        "name": "Russia",
+        "capital": "Moscow",
+        "area": "17098242",
+        "languages": "Russian"
+      },
+      {
+        "id": 9,
+        "name": "Singapore",
+        "capital": "Singapore",
+        "area": "728.6",
+        "languages": "English, Malay, Mandarin, Tamil"
+      },
+      {
+        "id": 10,
+        "name": "Saudi Arabia",
+        "capital": "Riyadh",
+        "area": "2149690",
+        "languages": "Arabic"
+      }
+    ]
+  }  
