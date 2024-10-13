@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import SearchCountry from "../components/SearchCountry";
+import "./index.css";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
 
-  const CountriesList = ({filteredResults}) => {
+  const CountriesList = ({filteredResults, onShowInfo}) => {
     if (filteredResults.length > 5 && filter !== "") {
       return (
         <>
@@ -32,13 +34,12 @@ const App = () => {
       return (
         <div>
           <ul>
-            {filteredResults.map(country => <li key={country.id}>{country.name}</li>)}
+            {filteredResults.map(country => <li key={country.id}>{country.name}<button className='btn-show' onClick={() => onShowInfo(country)}>Show</button></li>)}
           </ul>
         </div>
       )
     }
   }
-  
   
 
   const hook = () => {
@@ -53,6 +54,10 @@ const App = () => {
   const handleSearchCountries = (e) => {
     setFilter(e.target.value);
   }
+
+  const handleShowInfo = (country) => {
+    setSelectedCountry(country);
+  }
   
   const filteredCountry = countries.filter(country => country.name.toLowerCase().includes(filter.toLowerCase()))
 
@@ -60,9 +65,19 @@ const App = () => {
     <>
       <SearchCountry filter={filter} handleSearchCountries={handleSearchCountries} />
       <br />
-      <CountriesList filteredResults={filteredCountry}/>
+      {selectedCountry ? (
+            <div>
+              <h2>{selectedCountry.name}</h2>
+              <p>Capital: {selectedCountry.capital}</p>
+              <p>Area: {selectedCountry.area}</p>
+              <p>Languages: {selectedCountry.languages}</p>
+              <button onClick={() => setSelectedCountry(null)}>Back to list</button>
+            </div>
+        ) : (
+          <CountriesList filteredResults={filteredCountry} onShowInfo={handleShowInfo} />
+          )
+      }
     </>
-  )
+  );
 }
-
 export default App
